@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+
+    color: #1E1915;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: black; /* Change heading color for better contrast on a potentially dark background */
+}
+
+#notificationContainer {
+    width: 90%;
+    max-width: 500px; /* Maintain this for mobile support */
+    margin: 20px auto; /* Center the container */
+}
+
+.notification {
+    width: 100%; /* Use full width for visibility */
+    background-color: rgb(243, 243, 243); /* White background for notifications */
+    border-radius: 15px; /* Rounded corners */
+    padding: 15px;
+    margin-bottom: 15px; /* Space between notifications */
+    transition: transform 0.2s ease; /* Smooth transition for hover effect */
+    text-align: left; /* Align text to the left */
+}
+
+.notification:hover {
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.notification strong {
+    display: block; /* Makes the strong text stand out */
+    font-size: 1.1em; /* Slightly larger font */
+    color: #d9534f; /* Red color for the emergency title */
+}
+
+.notification p {
+    margin: 5px 0 0; /* Margin for the paragraph below strong text */
+    font-size: 0.9em; /* Smaller font for notification details */
+    color: #333; /* Darker color for text */
+}
+
+.notification:last-child {
+    margin-bottom: 0; /* Remove margin from the last notification */
+}
+
+/* Error and no notifications message styles */
+.no-notifications,
+.error {
+    text-align: center;
+    font-size: 1.1em;
+    color: #6D4AD0;
+    padding: 20px;
+}
+
+#clearNotificationsButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #6D4AD0;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#clearNotificationsButton:hover {
+    background-color: #ff3f3f;
+}
+
+/* Adding a notification sound */
+@keyframes notificationSound {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.notification {
+    animation: notificationSound 0.5s ease; /* Optional animation for new notifications */
+}

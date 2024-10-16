@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>Bachelor of Science in Computer Science</title>
+    <style>
+        body {
+            background-image: url('background.svg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .table-container {
+            background-color: white;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .table-title {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: left;
+            margin: 0;
+        }
+
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 17px;
+            width: 200px;
+            margin-left: auto;
+            margin-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #6D4AD0;
+            color: black;
+            padding: 10px;
+            text-align: left;
+            width: 20%;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            width: 20%;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .filter-select, .filter-input {
+            margin-top: 5px;
+            width: 100%;
+            color: black;
+            background-color: transparent;
+            border: 1px solid #6D4AD0;
+            text-align: center;
+        }
+
+        .header-name {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="table-container">
+        <h2 class="table-title">Bachelor of Science in Computer Science</h2>
+        <div class="table-header">
+            <input type="text" id="searchInput" placeholder="Search" class="search-input">
+        </div>
+        <table class="table table-hover" id="studentTable">
+            <thead>
+                <tr>
+                    <th class="header-name">Student ID</th>
+                    <th class="header-name">Full Name</th>
+                    <th>
+                        <select id="filterSection" class="filter-select">
+                            <option value="">Section</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </th>
+                    <th>
+                        <select id="filterYearLevel" class="filter-select">
+                            <option value="">Year Level</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                    </th>
+                    <th class="header-name">Email</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+       $(document).ready(function() {
+            // Load all students on page load
+            loadStudents();
+
+            // Search functionality
+            $('#searchInput').on('input', function() {
+                const query = $(this).val();
+                filterTable(query);
+            });
+
+            // Filters functionality
+            $('.filter-select, .filter-input').on('change', function() {
+                const query = $('#searchInput').val();
+                filterTable(query);
+            });
+
+            function filterTable(query) {
+                const section = $('#filterSection').val();
+                const yearLevel = $('#filterYearLevel').val();
+                const email = $('#filterEmail').val();
+
+                $.ajax({
+                    url: 'comsci.php',
+                    type: 'POST',
+                    data: {
+                        searchQuery: query,
+                        section: section,
+                        yearLevel: yearLevel,
+                        email: email
+                    },
+                    success: function(data) {
+                        $('#tableBody').html(data);  // Populate the table with filtered data
+                    }
+                });
+            }
+
+            function loadStudents() {
+                $.ajax({
+                    url: 'comsci.php',
+                    type: 'POST',
+                    data: {
+                        searchQuery: '',
+                        section: '',
+                        yearLevel: '',
+                        email: ''
+                    },
+                    success: function(data) {
+                        $('#tableBody').html(data);
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

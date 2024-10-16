@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+  <style>
+
+    #map {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1; 
+    }
+
+    .circular-menu {
+      position: fixed;
+      bottom: 1em;
+      right: 1em;
+      z-index: 2;
+    }
+
+    .circular-menu .floating-btn {
+        display: block;
+        width: 3.5em;
+        height: 3.5em;
+        border-radius: 50%;
+        background-color: hsl(4, 98%, 60%);
+        box-shadow: 0 2px 5px 0 hsla(0, 0%, 0%, .26);  
+        color: #161616;
+        text-align: center;
+        line-height: 3.9;
+        cursor: pointer;
+        outline: 0;
+    }
+
+    .circular-menu.active .floating-btn {
+      box-shadow: inset 0 0 3px hsla(0, 0%, 0%, .3);
+    }
+
+    .circular-menu .floating-btn:active {
+      box-shadow: 0 4px 8px 0 hsla(0, 0%, 0%, .4);
+    }
+
+    .circular-menu .floating-btn i {
+      font-size: 1.3em;
+      transition: transform .2s;  
+    }
+
+    .circular-menu.active .floating-btn i {
+      transform: rotate(-45deg);
+    }
+
+    .circular-menu:after {
+      display: block;
+      content: ' ';
+      width: 3.5em;
+      height: 3.5em;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -2;
+      background-color: hsl(4, 98%, 60%);
+      transition: all .3s ease;
+    }
+
+    .circular-menu.active:after {
+      transform: scale3d(5.5, 5.5, 1);
+      transition-timing-function: cubic-bezier(.68, 1.55, .265, 1);
+    }
+
+    .circular-menu .items-wrapper {
+      padding: 0;
+      margin: 0;
+    }
+
+    .circular-menu .menu-item {
+      position: absolute;
+      top: .2em;
+      right: .2em;
+      z-index: -1;
+      display: block;
+      text-decoration: none;
+      color: hsl(0, 0%, 100%);
+      font-size: 1em;
+      width: 3em;
+      height: 3em;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 3;
+      background-color: hsla(0,0%,0%,.1);
+      transition: transform .3s ease, background .2s ease;
+    }
+
+    .circular-menu .menu-item:hover {
+      background-color: hsla(0,0%,0%,.3);
+    }
+
+    .circular-menu.active .menu-item {
+      transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .circular-menu.active .menu-item:nth-child(1) {
+      transform: translate3d(1em,-7em,0);
+    }
+
+    .circular-menu.active .menu-item:nth-child(2) {
+      transform: translate3d(-3.5em,-6.3em,0);
+    }
+
+    .circular-menu.active .menu-item:nth-child(3) {
+      transform: translate3d(-6.5em,-3.2em,0);
+    }
+
+    .circular-menu.active .menu-item:nth-child(4) {
+      transform: translate3d(-7em,1em,0);
+    }
+
+    .circular-menu.circular-menu-left {
+      right: auto; 
+      left: 1em;
+    }
+
+    .circular-menu.circular-menu-left .floating-btn {
+      background-color: #CFFF5E;
+    }
+
+    .circular-menu.circular-menu-left:after {
+      background-color: #6D4AD0;
+    }
+
+    .circular-menu.circular-menu-left.active .floating-btn i {
+      transform: rotate(90deg);
+    }
+
+    .circular-menu.circular-menu-left.active .menu-item:nth-child(1) {
+      transform: translate3d(-1em,-7em,0);
+    }
+
+    .circular-menu.circular-menu-left.active .menu-item:nth-child(2) {
+      transform: translate3d(3.5em,-6.3em,0);
+    }
+
+    .circular-menu.circular-menu-left.active .menu-item:nth-child(3) {
+      transform: translate3d(6.5em,-3.2em,0);
+    }
+
+    .circular-menu.circular-menu-left.active .menu-item:nth-child(4) {
+      transform: translate3d(7em,1em,0);
+    }
+
+    #circularMenu {
+      display: none;
+    }
+
+
+#container {
+  font-family: sans-serif;
+  display: flex;
+  height: 88%;
+  width: 318px;
+  max-width: 319px;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 39px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 2; 
+  background-color: #6D4AD0;
+  right: 20px;
+  bottom: 25px;
+}
+
+h1 {
+  margin-top: 60px;
+  color: #fff;
+  text-align: center;
+}
+
+p {
+  color: #fff;
+  text-align: justify;
+}
+
+.search {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  height: 50px;
+}
+
+.search .input {
+  background-color: #fff;
+  border: 0;
+  border-radius: 39px;
+  font-size: 18px;
+  padding: 15px;
+  height: 20px;
+  width: 20px;
+  transition: width 0.5s ease-in-out;
+}
+
+.btn {
+  background: #CFFF5E;
+  border: 0;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 39px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.btn:focus,
+.input:focus {
+  outline: none;
+}
+
+.search.active .input {
+  width: 200px;
+}
+
+.search.active .btn {
+  transform: translateX(235px);
+}
+
+#results {
+  margin-top: 20px;
+}
+
+.modal {
+  font-family: sans-serif;
+  display: none; 
+  position: fixed; 
+  z-index: 3; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 50%;
+  max-width: 400px; 
+  border-radius: 37px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 64px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content p {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 17px;
+  cursor: pointer;
+  font-size: 16px;
+  
+}
+
+.modal-buttons .confirm-btn {
+  background-color: #6D4AD0;
+  color: #161616;
+}
+
+.modal-buttons .cancel-btn {
+  background-color: transparent;
+  color: black;
+}
+
+body .modal {
+  z-index: 1000;
+}
+
+
+body.modal-open {
+  overflow: hidden;
+}
+
+h2 {
+  color: black;
+}
+
+p{
+  color: black;
+}
+
+.emergency-notification {
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+  align-items: center; 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: #1E1915;
+  padding: 20px 30px;
+  border-radius: 39px;
+  height: 200px;
+  width: 250px;
+  z-index: 1002; 
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  font-family: sans-serif; 
+  font-size: 18px; 
+}
+
+
+.emergency-notification.show {
+  opacity: 1;
+}
+
+.dismiss-btn {
+    margin-left: 20px;
+    background-color: #FF3F3F;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-bottom: 0;
+    width: 100%
+}
+
+#results {
+  margin-top: 20px;
+  background-color: #f8f9fa; /* Light background for results */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow effect */
+  max-height: 400px; /* Increased maximum height */
+  overflow-y: auto; /* Scroll if content exceeds max height */
+  padding: 15px; /* Padding inside the results box */
+}
+
+.result-item {
+  background-color: #ffffff; /* White background for each item */
+  border-radius: 8px; /* Rounded corners for items */
+  padding: 15px; /* Padding inside each item */
+  margin-bottom: 10px; /* Space between items */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for effects */
+}
+
+.result-item h3 {
+  margin: 0; /* Remove default margin */
+  font-size: 20px; /* Larger font size for the student name */
+  color: #333; /* Color for the student name */
+}
+
+.result-item p {
+  margin: 5px 0; /* Margin for paragraph elements */
+  font-size: 14px; /* Font size for additional info */
+  color: #555; /* Slightly darker color for better readability */
+}
+
+.result-item:hover {
+  transform: translateY(-3px); /* Lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+  background-color: #e9ecef; /* Change background color on hover */
+}
+
+.track-button {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: #fff; /* White text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Padding for the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size */
+  transition: background-color 0.3s, transform 0.2s; /* Transition for effects */
+}
+
+.track-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* New CSS for centering the button */
+.button-container {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center the button horizontally */
+  margin-top: 40px; /* Add some space above the button */
+}
+
+
+/* Optional: Add a media query for responsiveness */
+@media (max-width: 600px) {
+  #results {
+    max-height: 300px; /* Adjust height for smaller screens */
+  }
+}
+
+
+
+
+    @media only screen and (max-width: 480px) {
+       #container,
+  .search,
+  h1 {
+    display: none;
+  }
+
+  #circularMenu {
+      display: block;
+    }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <div id="container">
+    <div id="content">
+      <h1>Student Location Tracking System</h1>
+      <p>Welcome to the student location tracking system. This system allows you to track the location of students in real-time.</p>
+      <div class="search">
+        <input type="text" class="input" placeholder="Start searching..."/>
+        <button class="btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div id="results"></div> 
+    </div>
+  </div>
+
+  <div id="circularMenu" class="circular-menu">
+    <a class="floating-btn"><i class="fas fa-search"></i></a>
+  </div>
+  
+  <div id="circularMenu1" class="circular-menu circular-menu-left active">
+    <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+      <i class="fa fa-bars"></i>
+    </a>
+    <menu class="items-wrapper">
+      <a href="college.html" class="menu-item fa fa-user"></a>
+      <a href="notification.html" class="menu-item fa fa-bell"></a>
+      <a href="#" class="menu-item fa fa-cog"></a>
+      <a href="#" id="signOutBtn" class="menu-item fa fa-power-off"></a>
+    </menu>
+  </div>
+
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <h2>Sign Out</h2>
+    <p>Are you sure you want to logout?</p>
+    <div class="modal-buttons">
+      <button class="confirm-btn" id="confirmLogout">Yes</button>
+      <button class="cancel-btn" id="cancelLogout">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+
+const signOutBtn = document.getElementById('signOutBtn');
+const logoutModal = document.getElementById('logoutModal');
+const confirmLogout = document.getElementById('confirmLogout');
+const cancelLogout = document.getElementById('cancelLogout');
+
+signOutBtn.addEventListener('click', (e) => {
+  e.preventDefault(); 
+  logoutModal.style.display = 'block';
+  document.body.classList.add('modal-open'); 
+});
+
+confirmLogout.addEventListener('click', () => {
+
+  window.location.href = 'signin.html';
+});
+
+cancelLogout.addEventListener('click', () => {
+  logoutModal.style.display = 'none';
+  document.body.classList.remove('modal-open'); 
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target == logoutModal) {
+    logoutModal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+});
+
+
+      var map = L.map('map').setView([14.49095, 121.05512], 13);
+
+
+    var datavizDarkLayer = L.tileLayer('https://api.maptiler.com/maps/dataviz-dark/{z}/{x}/{y}.png?key=U3dUFcIn1f5s5ThM8lWG', {
+      attribution: '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> contributors'
+    }).addTo(map); 
+
+
+    var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+    });
+
+
+    var baseMaps = {
+      "Dataviz Dark Map": datavizDarkLayer,
+      "OpenStreetMap": openStreetMapLayer
+    };
+
+    L.control.layers(baseMaps).addTo(map);
+
+    var circle = L.circle([14.49095, 121.05512], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 85 
+    }).addTo(map);
+
+
+
+    var iconOptions = {
+      iconUrl: 'tcu.png',
+      iconSize: [100,100]
+    }
+
+    var customIcon = L.icon(iconOptions);
+    var markerOptions = {
+      icon: customIcon,
+    }
+var marker = L.marker([14.49095, 121.05512], markerOptions).addTo(map);
+          
+
+const search = document.querySelector(".search");
+const btn = document.querySelector(".btn");
+const input = document.querySelector(".input");
+
+btn.addEventListener("click", () => {
+  search.classList.toggle("active");
+  input.focus();
+});
+
+window.onload = () => {
+  fetchStudents(); 
+};
+
+
+let lastTimestamp = localStorage.getItem('lastTimestamp') || null;
+
+
+function fetchAlerts() {
+    fetch('get_alerts.php')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(alert => {
+                if (!lastTimestamp || new Date(alert.timestamp) > new Date(lastTimestamp)) {
+                    displayAlert(alert);
+                    lastTimestamp = alert.timestamp;
+localStorage.setItem('lastTimestamp', lastTimestamp);
+
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching alerts:', error));
+}
+
+function displayAlert(alert) {
+    const alertContent = `
+        EMERGENCY ALERT
+        from ${alert.username} (${alert.last_name})
+        at ${alert.timestamp}
+    `;
+
+    showPopup(alertContent);
+}
+
+
+function showPopup(message) {
+    const notification = document.createElement('div');
+    notification.className = 'emergency-notification';
+
+        const alertIcon = document.createElement('i');
+    alertIcon.className = 'fa-solid fa-triangle-exclamation';
+    notification.appendChild(alertIcon); 
+    
+    const messageText = document.createElement('span');
+    messageText.innerText = message;
+    notification.appendChild(messageText);
+
+    const dismissButton = document.createElement('button');
+    dismissButton.className = 'dismiss-btn';
+    dismissButton.innerText = 'Dismiss';
+    dismissButton.addEventListener('click', () => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 500); 
+    });
+    notification.appendChild(dismissButton);
+
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100); 
+}
+
+
+setInterval(fetchAlerts, 500);
+
+fetchAlerts();
+
+  // Add event listener to the search button
+  document.querySelector('.btn').addEventListener('click', function() {
+    const searchInput = document.querySelector('.input').value;
+
+    // Make an AJAX request to search.php
+    if (searchInput.trim()) {
+      fetch(`search.php?query=${encodeURIComponent(searchInput)}`)
+        .then(response => response.json())
+        .then(data => {
+          const resultsContainer = document.getElementById('results');
+          resultsContainer.innerHTML = ''; // Clear previous results
+
+          if (data.length > 0) {
+            data.forEach(student => {
+              const resultItem = document.createElement('div');
+              resultItem.classList.add('result-item');
+              resultItem.innerHTML = `
+                
+                <h4>Student Information:</h4>
+                <p>Student ID: ${student.student_id}</p>
+                <p>Name: ${student.first_name} ${student.last_name}</p>
+                <p>Email: ${student.email}</p>
+                <p>Program: ${student.program}</p>
+                <p>Section: ${student.section}</p>
+                <p>Mobile No.: ${student.mobile_no}</p>
+                <h4>Emergency Contact:</h4>
+                <p>Contact Name: ${student.emergency_name}</p>
+                <p>Emergency No.: ${student.emergency_no}</p>
+                <button class="track-button" onclick="trackStudent('${student.student_id}')">
+          <i class="fa-solid fa-location-crosshairs"></i>
+        </button>
+
+              `;
+              resultsContainer.appendChild(resultItem);
+            });
+          } else {
+            resultsContainer.innerHTML = '<p>No results found.</p>';
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  });
+
+  
+</script>
+
+
+  
+</body>
+</html>

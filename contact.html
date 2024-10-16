@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Hotlines</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+            color: black;
+            text-align: center; 
+            flex-direction: column; 
+        }
+
+        h1 {
+            margin-top: 50px;
+            color: black;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .services-container {
+            display: flex;
+            flex-direction: column; 
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center; 
+            margin-bottom: 20px;
+        }
+
+        .service-card {
+            width: 270px;
+            height: 270px;
+            margin: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+            transition: all .4s;
+        }
+
+        .service-card:hover {
+            color: black;
+        }
+
+        .service-card::before,
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(243, 243, 243);
+            z-index: -1;
+            border-radius: 13px;
+            transition: all .4s;
+        }
+
+        .service-card::after {
+            background: #6D4AD0;
+            transform-origin: right bottom;
+            transform: translate(10%, 10%) scale(0.3);
+            border-radius: 50%;
+            transition: all .4s;
+        }
+
+        .service-card:hover::after {
+            transform: translate(0) scale(1);
+            border-radius: 13px;
+        }
+
+        .service-card:hover::before {
+            transform-origin: right bottom;
+            transform: translate(10%, 10%) scale(0.3);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .service-icon {
+            font-size: 50px; 
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        /* Improved styles for h2 and p elements */
+        .service-card h2 {
+            font-size: 20px; /* Font size for headings */
+            font-weight: 500; /* Medium weight */
+            color: black; /* Darker color for better readability */
+            margin-bottom: 10px; /* Space below the heading */
+            line-height: 1.3; /* Better line height for readability */
+        }
+
+        .service-card p {
+            font-size: 14px; /* Font size for paragraphs */
+            font-weight: 400; /* Normal weight */
+            color: black; /* Softer color for text */
+            margin-bottom: 5px; /* Space below paragraphs */
+            line-height: 1.6; /* Better line height for readability */
+            text-align: center; /* Center the text */
+            padding: 0 10px; /* Added padding for better text placement */
+        }
+    </style>
+</head>
+<body>
+    <h1>Emergency Hotlines</h1>
+
+    <div class="services-container">
+        <div class="row">
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <h2><b>EMERGENCY HOTLINE</b></h2>
+                <p>For any kind of emergency, the most important number to remember is the Philippine National Emergency Hotline.</p>
+                <strong>Emergency Hotline: 911</strong>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <h2><b>PNP</b></h2>
+                <p>In case of crime or any law enforcement needs, contact the Philippine National Police.</p>
+                <strong>Emergency Hotline: 9-117 / 8723-0401 / 8537-4500</strong>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <h2><b>BFP</b></h2>
+                <p>If you encounter a fire emergency, immediately call the Bureau of Fire Protection.</p>
+                <strong>Emergency Hotline: (02) 8426-0219 / (02) 8790-8400</strong>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <h2><b>NDRRMC</b></h2>
+                <p>For natural disasters and calamities, reach out to NDRRMC.</p>
+                <strong>Emergency Hotline: (02) 8421-1918 / (02) 8913-2786</strong>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <h2><b>DOH</b></h2>
+                <p>For health-related emergencies, contact the Department of Health.</p>
+                <strong>Emergency Hotline: 8711-1001</strong>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <h2><b>NCMH</b></h2>
+                <p>If you or someone you know is in crisis, reach out to this hotline for help.</p>
+                <strong>Emergency Hotline: 0966-351-4518</strong>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
