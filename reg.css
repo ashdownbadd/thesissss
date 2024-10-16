@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url('background.svg');
+    background-size: cover;
+}
+
+h2 {
+    color: #6D4AD0; 
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h4 {
+    color: #6D4AD0;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.formbold-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+}
+
+.formbold-form-wrapper {
+    margin: 0 auto;
+    max-width: 570px;
+    width: 100%;
+    background: #1E1915;
+    padding: 40px;
+    box-shadow: 0 0 64px rgba(0, 0, 0, 0.5);
+    border-radius: 39px; 
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: white; 
+}
+
+.formbold-form-input,
+.formbold-form-select {
+    width: 100%;
+    border: none;
+    padding: 12px 15px;
+    font-weight: 400;
+    font-size: 16px;
+    color: white;
+    background: transparent;
+    outline: none;
+    border-bottom: 2px solid white; 
+    margin-bottom: 25px;
+}
+
+.formbold-form-select {
+    appearance: none;
+    background: transparent;
+    padding-right: 35px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="white" d="M5 8l5 5 5-5H5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    color: white; 
+}
+
+
+.formbold-form-input option {
+    background-color: white; /* Ensure dropdown options have a white background */
+    color: black; /* Ensure options have black text color */
+}
+
+.formbold-form-select option {
+    color: black;
+    background: white; 
+}
+
+/* Placeholder styling */
+.formbold-form-input::placeholder {
+    color: white; /* Adjust placeholder color */
+    opacity: 0.5; /* Decrease opacity to 50% */
+}
+
+.formbold-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: black;
+    background-color: #CFFF5E;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100%;
+}
+
+.formbold-btn:hover {
+    background-color: #A3D053;
+}
+
+@media (max-width: 480px) {
+    .formbold-main-wrapper {
+        padding: 20px; /* Reduce padding on mobile */
+    }
+
+    .formbold-form-wrapper {
+        padding: 20px; /* Reduce padding on form wrapper */
+        max-width: 100%; /* Ensure it takes full width */
+    }
+
+    h2 {
+        font-size: 24px; /* Adjust title font size */
+    }
+
+    .formbold-form-input {
+        padding: 10px; /* Adjust padding for input fields */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .formbold-btn {
+        width: 100%; /* Make button full width */
+    }
+}
+
+.formbold-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.formbold-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.formbold-input-checkbox {
+    display: none; /* Hide the default checkbox */
+}
+
+.formbold-checkbox-circle {
+    width: 20px; /* Set the width of the circle */
+    height: 20px; /* Set the height of the circle */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px; /* Space between checkbox and label */
+    background-color: #fff; /* Default background color */
+    border: 2px solid #070C08; /* Optional: outline border */
+    position: relative;
+    cursor: pointer;
+}
+
+.formbold-input-checkbox:checked + .formbold-checkbox-circle {
+    background-color: #070C08; /* Change to filled color when checked */
+    border: 2px solid #D2EE79; /* Optional: change border color when checked */
+}
+
+.terms-link {
+    color:  #6D4AD0; /* Change this to your preferred link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.terms-link:hover {
+    text-decoration: underline; /* Add underline on hover for better visibility */
+}
+
+.show-password-text {
+    color: white; /* Set the color to white */
+    margin-left: 8px; /* Add some space between the checkbox and the text */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 16px; /* Optional: adjust font size */
+}
+
+/* Optional: To align the checkbox and text with the input field */
+.formbold-show-password {
+    vertical-align: middle; /* Align checkbox with text */
+}
+
+.password-container {
+    position: relative;
+    margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+.password-input {
+    width: 100%; /* Full width */
+    padding: 12px 40px 12px 12px; /* Add padding for input */
+    border: none; /* No border */
+    color: white;
+    border-bottom: 2px solid white; /* Bottom border */
+    outline: none; /* Remove outline */
+    font-size: 16px; /* Font size */
+    background: transparent;
+}
+
+.password-input::placeholder {
+    color: white; /* Adjust placeholder color */
+    opacity: 0.5; /* Decrease opacity to 50% */
+}
+
+
+.show-password-icon {
+    position: absolute; 
+    right: 10px; 
+    top: 70%;
+    transform: translateY(-50%); 
+    cursor: pointer;
+    padding: 5px;
+    border: none; 
+}
+
+.show-password-icon:hover {
+    background-color: transparent;
+}
+
+.show-password-icon i {
+    color: white;
+    font-size: 15px;
+}

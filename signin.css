@@ -1,0 +1,325 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-image: url('image.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+#signin {
+    width: 10%;
+    background: transparent;
+    margin: 100px 50px;
+    box-shadow: 0 0 64px rgba(0, 0, 0, 0.5);
+    padding: 100px;
+    position: absolute;
+    right: 3%;
+    overflow: hidden;
+    border-radius: 39px;
+}
+
+#signin .form-title {
+    font: 500 16px/1 'Roboto', sans-serif;
+    color: #E3E0CD;
+    text-align: center;
+    margin: 35px 0;
+}
+
+#signin .input-field {
+    position: relative;
+    height: 50px;
+    margin: 35px 0;
+}
+
+#signin .input-field i {
+    position: absolute;
+    bottom: 18px;
+    left: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+#signin .input-field input {
+    width: calc(100% - 70px);
+    height: 50px;
+    font: 500 16px/1 'Roboto', sans-serif;
+    padding: 0 20px 0 50px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    color: white;
+    border-radius: 0;
+    outline: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#signin .forgot-pw {
+    font: 600 12px/1 'Roboto', sans-serif;
+    color: #E3E0CD;
+    text-decoration: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#signin button.login {
+    min-height: 60px;
+    font: 500 16px/1 'Roboto', sans-serif;
+    width: 100%;
+    padding: 20px;
+    background: #CFFF5E;
+    color: #161616;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+#signin .register-account {
+    font: 600 14px/1 'Roboto', sans-serif;
+    color: #E3E0CD;
+    text-decoration: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.register-account-mobile {
+    display: none;
+}
+
+.background-world {
+    float: left; /* Floats the image to the left */
+    height: 90vh; /* Adjust height as needed */
+    width: 70%; /* Limits the visible area to 70% of the viewport */
+    background-image: url('color-css/world.svg');
+    background-size: 97%; /* Scales the image */
+    background-position: right center; /* Shows the right half of the image */
+    background-repeat: no-repeat;
+    z-index: -1; /* Ensures it is behind other content */
+    margin-top: -50px; /* Adjust this value as needed */
+}
+
+@media (max-width: 480px) {
+    .call-text {
+        display: none;
+    }
+
+    .social-media-links {
+        display: none;
+    }
+
+    #signin {
+        width: 70%;
+        margin: auto;
+        box-shadow: none;
+        right: 0;
+        left: 0;
+        padding: 50px;
+        border-radius: 0px;
+    }
+
+    #signin .forgot-pw {
+        font: 600 13px/1 'Roboto', sans-serif;
+        color: #E3E0CD;
+        text-decoration: none;
+        display: block;
+        margin: 45px auto;
+        text-align: center;
+    }
+
+    #signin button.login {
+        min-height: 50px;
+        font: 500 16px/1 'Roboto', sans-serif;
+        width: 100%;
+        padding: 20px;
+        background: #CFFF5E;
+        color: #161616;
+        border: none;
+        outline: 0;
+        cursor: pointer;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-radius: 16px;
+    }
+
+    #signin .register-account {
+        display: none;
+    }
+
+    .register-account-mobile {
+        display: block; 
+        font: 600 14px/1 'Roboto', sans-serif;
+        color: #E3E0CD;
+        text-decoration: none;
+        text-align: center;
+        position: fixed;
+        bottom: 20px;
+        width: 100%;
+        z-index: 10;
+    }
+
+     .parallelogram-cards {
+        display: none !important;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .background-world {
+        display: none;
+    }
+    
+}
+
+.parallelogram-cards {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 20px;
+
+    
+}
+
+.parallelogram-card {
+    width: 220px;
+    height: 120px;
+    background-color: #6D4AD0;
+    transform: skew(-10deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #161616;
+    font-weight: bold;
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
+    font-family: 'Raleway', sans-serif; 
+    font-weight: bold;
+    border-radius: 12px;
+    }
+
+    .card-text {
+    transform: skew(10deg);
+    font-family: 'Raleway', sans-serif; 
+    font-weight: bold;
+    color: #161616; 
+    text-align: center; 
+}
+
+
+.parallelogram-card:hover {
+    background-color: #A4DA43;
+    cursor: pointer;
+}
+
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: transparent;
+    padding: 20px 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li {
+    display: inline;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #CFFF5E;
+    color: #161616;
+    border-radius: 4px;
+}
+
+body {
+    padding-top: 80px; 
+}
+
+#signin {
+    margin-top: 50px;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-image: url('background.svg');
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(100vh - 80px); 
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+    .parallelogram-cards {
+        left: 10px;
+        bottom: 0;
+        gap: 10px; /* Slightly smaller gap between cards */
+    }
+
+    .parallelogram-card {
+        width: 180px; /* Smaller width */
+        height: 110px; /* Smaller height */
+        transform: skew(-10deg); /* Keep the skew effect */
+        border-radius: 8px; /* Smaller border radius */
+    }
+
+    .card-text {
+        transform: skew(10deg); /* Keep text skew */
+        font-size: 14px; /* Reduce text size for smaller cards */
+    }
+}
+
+/* Adjusting the world.svg background */
+    .background-world {
+        background-size: 95%; /* Reduce the size of the world.svg */
+        background-position: 15% center; /* Maintain the position */
+    }

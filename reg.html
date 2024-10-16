@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="reg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+
+<body>
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+            <form action="reg.php" method="POST" onsubmit="return validateForm()">
+                <div class="formbold-form-title">
+                    <h2 class="">Sign Up</h2>
+                </div>
+                
+                <h4 class="">Personal Information</h4>
+                <br>
+
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="formbold-form-input" placeholder="Enter Username" required />
+                </div>
+                
+                <div class="password-container">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="password-input" placeholder="Enter Password" required />
+                    <span class="show-password-icon" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                
+                
+                
+                
+
+                <div>
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" id="lastname" class="formbold-form-input" placeholder="Enter Last Name" required />
+                </div>
+
+                <div>
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname" id="firstname" class="formbold-form-input" placeholder="Enter First Name" required />
+                </div>
+
+                <div>
+                    <label for="middlename">Middle Name</label>
+                    <input type="text" name="middlename" id="middlename" class="formbold-form-input" placeholder="Enter Middle Name" />
+                </div>
+
+                <div>
+                    <label for="extension">Extension (If Any)</label>
+                    <input type="text" name="extension" id="extension" class="formbold-form-input" placeholder="Enter Extension (If Any)" />
+                </div>
+
+                <div class="formbold-mb-3">
+                    <label for="mobilenumber">Mobile No.</label>
+                    <input type="text" name="mobilenumber" id="mobilenumber" class="formbold-form-input" placeholder="Enter Mobile No." required />
+                </div>
+
+                <div class="formbold-mb-3">
+                    <label for="email">Email Address</label>
+                    <input type="text" name="email" id="email" class="formbold-form-input" placeholder="Enter Email Address" required />
+                </div>
+
+                <br>
+                <h4 class="">Student Information</h4>
+                <br>
+
+                <div>
+                    <label for="studentnumber">Student No.</label>
+                    <input type="text" name="studentnumber" id="studentnumber" class="formbold-form-input" placeholder="Enter Student No." required />
+                </div>
+
+                <div>
+                    <label for="yearlevel">Year Level</label>
+                    <select name="yearlevel" id="yearlevel" class="formbold-form-input" required>
+                        <option value="">Select Year Level</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="section">Section</label>
+                    <select name="section" id="section" class="formbold-form-input" required>
+                        <option value="">Select Section</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="program">Program</label>
+                    <select name="program" id="program" class="formbold-form-input" required>
+                        <option value="">Select Program</option>
+                        <option value="Bachelor of Science in Psychology">Bachelor of Science in Psychology</option>
+                        <option value="Bachelor of Science in Social Work">Bachelor of Science in Social Work</option>
+                        <option value="Bachelor of Public Administration">Bachelor of Public Administration</option>
+                        <option value="Bachelor of Science in Business Administration, Major in Marketing Management">Bachelor of Science in Business Administration, Major in Marketing Management</option>
+                        <option value="Bachelor of Science in Human Resource Development Management">Bachelor of Science in Human Resource Development Management</option>
+                        <option value="Bachelor of Science in Office Administration">Bachelor of Science in Office Administration</option>
+                        <option value="Bachelor of Science in Entrepreneurial Management">Bachelor of Science in Entrepreneurial Management</option>
+                        <option value="Bachelor of Science in Criminology">Bachelor of Science in Criminology</option>
+                        <option value="Bachelor of Elementary Education">Bachelor of Elementary Education</option>
+                        <option value="Bachelor of Science in Education, Major in English">Bachelor of Science in Education, Major in English</option>
+                        <option value="Bachelor of Science in Education, Major in Mathematics">Bachelor of Science in Education, Major in Mathematics</option>
+                        <option value="Bachelor of Science in Education, Major in Science">Bachelor of Science in Education, Major in Science</option>
+                        <option value="Bachelor of Science in Hospitality Management">Bachelor of Science in Hospitality Management</option>
+                        <option value="Bachelor of Science in Tourism Management">Bachelor of Science in Tourism Management</option>
+                        <option value="Bachelor of Science in Information System">Bachelor of Science in Information System</option>
+                        <option value="Bachelor of Science in Computer Science">Bachelor of Science in Computer Science</option>
+                    </select>
+                </div>
+
+                <br>
+                <h4 class="">Emergency Contact Information</h4>
+                <br>
+
+                <div>
+                    <label for="fullname">Emergency Contact Name</label>
+                    <input type="text" name="fullname" id="fullname" class="formbold-form-input" placeholder="Enter Emergency Contact Name" required />
+                </div>
+                
+                <div>
+                    <label for="emergencymobilenumber">Emergency Mobile No.</label>
+                    <input type="text" name="emergencymobilenumber" id="emergencymobilenumber" class="formbold-form-input" placeholder="Enter Emergency Mobile No." required />
+                </div>
+                <br>
+
+                <div class="formbold-checkbox-wrapper">
+                    <label for="supportCheckbox" class="formbold-checkbox-label">
+                        <input type="checkbox" id="supportCheckbox" class="formbold-input-checkbox" />
+                        <span class="formbold-checkbox-circle"></span>
+                        I agree to the &nbsp;<a href="terms&conditions.html" target="_blank" class="terms-link"> terms and conditions</a>.
+                    </label>
+                </div>
+                
+                
+                
+                <br>
+
+                <div>
+                    <button type="submit" class="formbold-btn">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password');
+    const icon = document.querySelector('.show-password-icon i');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye'); // Change icon to open eye
+        icon.classList.add('fa-eye-slash'); // Change icon to closed eye
+    } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye-slash'); // Change icon to closed eye
+        icon.classList.add('fa-eye'); // Change icon to open eye
+    }
+}
+
+
+    function validateForm() {
+        const checkbox = document.getElementById('supportCheckbox');
+        if (!checkbox.checked) {
+            alert('You must agree to the terms and conditions to register.');
+            return false;
+        }
+        return true;
+    }
+
+    </script>
+</body>
+</html>

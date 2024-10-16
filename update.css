@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url('background.svg');
+    background-size: cover;
+}
+
+h4 {
+    color: #6D4AD0; /* Set the color for h4 elements */
+}
+
+.formbold-mb-3 {
+    margin-bottom: 15px;
+}
+
+.formbold-relative {
+    position: relative;
+}
+
+.formbold-opacity-0 {
+    opacity: 0;
+}
+
+.formbold-stroke-current {
+    stroke: currentColor;
+}
+
+#supportCheckbox:checked ~ div span {
+    opacity: 1;
+}
+
+.formbold-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+}
+
+.formbold-form-wrapper {
+    margin: 0 auto;
+    max-width: 570px;
+    width: 100%;
+    background: #1E1915;
+    padding: 40px;
+    box-shadow: 0 0 64px rgba(0, 0, 0, 0.5);
+    border-radius: 39px; /* Optional: Add rounded corners */
+}
+
+.formbold-form-title {
+    margin-bottom: 30px;
+}
+
+.formbold-form-title h2 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #6D4AD0;
+}
+
+.formbold-form-title p {
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+    margin-top: 12px;
+}
+
+.formbold-input-flex {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.formbold-form-input {
+    width: 100%;
+    border: none;
+    padding: 12px 15px;
+    font-weight: 400;
+    font-size: 16px;
+    color: white;
+    background: transparent; /* Make the background transparent */
+    outline: none;
+    border-bottom: 2px solid white;
+}
+
+.formbold-form-input option {
+    background-color: white; /* Ensure dropdown options have a white background */
+    color: black; /* Ensure options have black text color */
+}
+
+
+/* Placeholder styling */
+.formbold-form-input::placeholder {
+    color: white; /* Adjust placeholder color */
+    opacity: 1; /* Ensures the placeholder is visible */
+}
+
+.formbold-checkbox-wrapper {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.formbold-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+}
+
+.formbold-input-checkbox {
+    margin-right: 10px;
+}
+
+.formbold-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: black;
+    background-color: #CFFF5E;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.formbold-btn:hover {
+    background-color: #A3D053;
+}
+
+@media (max-width: 480px) {
+    .formbold-main-wrapper {
+        padding: 20px; /* Reduce padding on mobile */
+    }
+
+    .formbold-form-wrapper {
+        padding: 20px; /* Reduce padding on form wrapper */
+        max-width: 100%; /* Ensure it takes full width */
+    }
+
+    .formbold-form-title h2 {
+        font-size: 24px; /* Adjust title font size */
+    }
+
+    .formbold-form-title p {
+        font-size: 14px; /* Adjust paragraph font size */
+    }
+
+    .formbold-input-flex {
+        flex-direction: column; /* Stack inputs vertically */
+        gap: 10px; /* Reduce gap between inputs */
+    }
+
+    .formbold-form-input {
+        padding: 10px; /* Adjust padding for input fields */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .formbold-btn {
+        width: 100%; /* Make button full width */
+    }
+
+    .formbold-checkbox-label {
+        font-size: 12px; /* Adjust font size for checkbox label */
+    }
+}

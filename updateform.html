@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('background.svg');
+            background-size: cover;
+        }
+
+        h2 {
+            color: #6D4AD0;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 34px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .formbold-main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+        }
+
+        .formbold-form-wrapper {
+            margin: 0 auto;
+            max-width: 570px;
+            width: 100%;
+            background: #1E1915;
+            padding: 40px;
+            box-shadow: 0 0 64px rgba(0, 0, 0, 0.5);
+            border-radius: 39px; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .formbold-form-input,
+        .formbold-form-select {
+            width: 100%;
+            border: none;
+            padding: 12px 15px;
+            font-weight: 400;
+            font-size: 16px;
+            color: white;
+            background: transparent;
+            outline: none;
+            border-bottom: 2px solid white; 
+            margin-bottom: 25px;
+        }
+
+        .formbold-form-select {
+            appearance: none; 
+            background: transparent; 
+            padding-right: 35px; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="white" d="M5 8l5 5 5-5H5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center; 
+            color: white; 
+        }
+
+       
+        .formbold-form-select option {
+            color: black; 
+            background: white; 
+        }
+
+        /* Placeholder styling */
+.formbold-form-input::placeholder {
+    color: white; /* Adjust placeholder color */
+    opacity: 0.5; /* Decrease opacity to 50% */
+}
+
+        .formbold-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: black;
+            background-color: #CFFF5E;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            width: 100%;
+        }
+
+        .formbold-btn:hover {
+            background-color: #A3D053;
+        }
+
+        h6 {
+    color: #6D4AD0;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+        @media (max-width: 480px) {
+            .formbold-main-wrapper {
+                padding: 20px; 
+            }
+
+            .formbold-form-wrapper {
+                padding: 20px;
+                max-width: 100%; 
+            }
+
+            h2 {
+                font-size: 24px; 
+            }
+
+            .formbold-form-input {
+                padding: 10px; 
+                font-size: 14px; 
+            }
+
+            .formbold-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+            <h2>Update Profile</h2>
+
+
+                <h6 class="">Personal Information</h6>
+                <br>
+                <form id="updateForm" action="update.php" method="POST">
+
+
+                <label for="last_name">Student ID:</label>
+                <input type="text" name="student_id" id="student_id" class="formbold-form-input" readonly>
+                
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" id="last_name" class="formbold-form-input" placeholder="Enter Last Name">
+                
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" id="first_name" class="formbold-form-input" placeholder="Enter First Name">
+                
+                <label for="middle_name">Middle Name:</label>
+                <input type="text" name="middle_name" id="middle_name" class="formbold-form-input" placeholder="Enter Middle Name">
+                
+                <label for="extension">Extension:</label>
+                <input type="text" name="extension" id="extension" class="formbold-form-input" placeholder="Enter Extension">
+                
+                <label for="mobile_no">Mobile No:</label>
+                <input type="text" name="mobile_no" id="mobile_no" class="formbold-form-input" placeholder="Enter Mobile No.">
+                
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" class="formbold-form-input" placeholder="Enter Email Address">
+
+                <br>
+                <br>
+                <h6 class="">Student Information</h6>
+                <br>
+                
+                <label for="year_level">Year Level:</label>
+                <select name="year_level" id="year_level" class="formbold-form-select">
+                    <option value="">Select Year Level</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+                
+                <label for="section">Section:</label>
+                <select name="section" id="section" class="formbold-form-select">
+                    <option value="">Select Section</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+                
+                <label for="program">Program:</label>
+                <select name="program" id="program" class="formbold-form-select">
+                    <option value="">Select Program</option>
+                    <option value="Bachelor of Science in Psychology">Bachelor of Science in Psychology</option>
+                    <option value="Bachelor of Science in Social Work">Bachelor of Science in Social Work</option>
+                    <option value="Bachelor of Public Administration">Bachelor of Public Administration</option>
+                    <option value="Bachelor of Science in Business Administration, Major in Marketing Management">Bachelor of Science in Business Administration, Major in Marketing Management</option>
+                    <option value="Bachelor of Science in Human Resource Development Management">Bachelor of Science in Human Resource Development Management</option>
+                    <option value="Bachelor of Science in Office Administration">Bachelor of Science in Office Administration</option>
+                    <option value="Bachelor of Science in Office Administration">Bachelor of Science in Entrepreneurial Management</option>
+                    <option value="Bachelor of Science in Criminology">Bachelor of Science in Criminology</option>
+                    <option value="Bachelor of Elementary Education">Bachelor of Elementary Education</option>
+                    <option value="Bachelor of Science in Education, Major in English">Bachelor of Science in Education, Major in English</option>
+                    <option value="Bachelor of Science in Education, Major in Mathematics">Bachelor of Science in Education, Major in Mathematics</option>
+                    <option value="Bachelor of Science in Education, Major in Science">Bachelor of Science in Education, Major in Science</option>
+                    <option value="Bachelor of Science in Hospitality Management">Bachelor of Science in Hospitality Management</option>
+                    <option value="Bachelor of Science in Tourism Management">Bachelor of Science in Tourism Management</option>
+                    <option value="Bachelor of Science in Information System">Bachelor of Science in Information System</option>
+                    <option value="Bachelor of Science in Computer Science">Bachelor of Science in Computer Science</option>
+                </select>
+                
+                <button type="submit" class="formbold-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function populateForm() {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('student_id').value = params.get('student_id');
+            document.getElementById('last_name').value = params.get('last_name');
+            document.getElementById('first_name').value = params.get('first_name');
+            document.getElementById('middle_name').value = params.get('middle_name');
+            document.getElementById('extension').value = params.get('extension');
+            document.getElementById('mobile_no').value = params.get('mobile_no');
+            document.getElementById('email').value = params.get('email');
+
+            document.getElementById('year_level').value = params.get('year_level');
+            document.getElementById('section').value = params.get('section');
+            document.getElementById('program').value = params.get('program');
+        }
+
+        window.onload = populateForm;
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Location Tracking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="signin.css"> 
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="signin.html" class="logo">
+                <img src="slts.png" alt="Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="signin.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Emergency Hotlines</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Add the world.svg as a background layer on the left -->
+    <div class="background-world"></div>
+
+    <div id="signin">
+        <div class="form-title">Sign In</div>
+        <form action="signin.php" method="POST" id="loginForm">
+            <div class="input-field">
+                <input type="text" name="username" autocomplete="off" required />
+                <i class="material-icons">email</i>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" required />
+                <i class="material-icons">lock</i>
+            </div>
+            <a href="forgot_password.html" class="forgot-pw">Forgot Password?</a>
+            <button type="submit" class="login">Login</button>
+
+            <a href="reg.html" class="register-account">Register Account</a>
+        </form>
+    </div>
+
+<div class="parallelogram-cards">
+    <a href="gettingstarted.html" class="parallelogram-card">
+        <div class="card-text">Getting Started</div>
+    </a>
+    <a href="howitworks.html" class="parallelogram-card">
+        <div class="card-text">How It Works</div>
+    </a>
+    <a href="benefits.html" class="parallelogram-card">
+        <div class="card-text">Benefits</div>
+    </a>
+    <a href="privacyandsecurity.html" class="parallelogram-card">
+        <div class="card-text">Privacy and Security</div>
+    </a>
+</div>
+
+    
+
+    <a href="reg.html" class="register-account-mobile">Register Account</a>
+
+    <script src="signin.js"></script>
+</body>
+</html>
